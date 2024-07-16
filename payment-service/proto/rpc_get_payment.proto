@@ -1,0 +1,20 @@
+syntax = "proto3";
+package pb;
+
+option go_package = "payment-service/pb";
+
+import "payment.proto";
+
+message GetAllPaymentResponse {
+  repeated Payment payments = 1;
+}
+
+message GetPaymentRequest {
+  uint32 id = 1;
+}
+
+message GetPaymentResponse {
+  Payment payment = 1;
+}
+
+message GetAllEmpty {}

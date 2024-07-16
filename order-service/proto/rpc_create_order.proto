@@ -1,0 +1,21 @@
+syntax = "proto3";
+package pb;
+
+option go_package = "order-service/pb";
+
+import "order.proto";
+
+message CreateOrderRequest {
+  string email = 1;
+  string order_id = 2;
+  string product_id = 3;
+  int32 quantity = 4;
+  int32 price = 5;
+  int32 total = 6;
+  string player_id = 7;
+  int32 payment_id = 8;
+}
+
+message CreateOrderResponse {
+  Order order = 1;
+}

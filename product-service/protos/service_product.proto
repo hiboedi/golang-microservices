@@ -1,0 +1,49 @@
+syntax = "proto3";
+package pb;
+
+import "google/api/annotations.proto";  // Use annotations.proto, not http.proto
+
+option go_package = "/pb";
+
+service ProductService {
+  rpc GetProducts(Empty) returns (GetAllProductsResponse) {
+    option (google.api.http) = {
+      get: "/v1/products"
+    };
+  }
+  rpc GetProductDetailById(GetProductDetailByProductIDRequest) returns (GetProductDetailByProductIDResponse) {
+    option (google.api.http) = {
+      get: "/v1/products/{product_id}"
+    };
+  }
+  rpc GetProductById(GetProductByIdRequest) returns (GetProductByIdResponse);
+}
+
+message Empty {}
+
+message GetAllProductsResponse {
+  repeated Product products = 1;
+}
+
+message GetProductDetailByProductIDRequest {
+  string product_id = 1;
+}
+
+message GetProductDetailByProductIDResponse {
+  Product product = 1;
+}
+
+message GetProductByIdRequest {
+  string product_id = 1;
+}
+
+message GetProductByIdResponse {
+  Product product = 1;
+}
+
+message Product {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  float price = 4;
+}

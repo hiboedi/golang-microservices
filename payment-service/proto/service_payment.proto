@@ -1,0 +1,20 @@
+syntax = "proto3";
+package pb;
+
+import "rpc_get_payment.proto";
+import "google/api/annotations.proto";
+option go_package = "payment-service/pb";
+
+service PaymentService {
+  rpc GetPayments(GetAllEmpty) returns (GetAllPaymentResponse) {
+    option (google.api.http) = {
+      get: "/v1/payments"
+    };
+  }
+
+  rpc GetPayment(GetPaymentRequest) returns (GetPaymentResponse) {
+    option (google.api.http) = {
+      get: "/v1/payments/{id}"
+    };
+  }
+}
