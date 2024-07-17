@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option go_package = "/pb";
+
+package pb;
+
+service EmailService {
+    rpc SendEmail (EmailRequest) returns (EmailResponse) {}
+}
+
+message EmailRequest {
+    string to = 1;
+    string playerId = 2;
+    string productName = 3;
+    float productPrice = 4;
+}
+
+message EmailResponse {
+    string status = 1;
+}
